@@ -10,13 +10,13 @@ import top.beanshell.mybatis.model.pojo.BaseEntity;
 import java.util.Date;
 
 /**
- * CRUD抽象服务实现
+ * CRUD抽象DAO服务实现
  * @param <D>   DTO
  * @param <T>   DB POJO
  * @param <M>   Mapper
  * @author mobinchao
  */
-public class CRUDServiceImpl<D, T extends BaseEntity, M extends BaseMapper<T>>
+public class CRUDDaoServiceImpl<D, T extends BaseEntity, M extends BaseMapper<T>>
         extends ServiceImpl<M, T>
         implements ServiceI<D> {
 
@@ -55,7 +55,7 @@ public class CRUDServiceImpl<D, T extends BaseEntity, M extends BaseMapper<T>>
      * @return  dto class
      */
     protected Class<D> currentDtoClass() {
-        return (Class<D>) ReflectionKit.getSuperClassGenericType(getClass(), CRUDServiceImpl.class, 0);
+        return (Class<D>) ReflectionKit.getSuperClassGenericType(getClass(), CRUDDaoServiceImpl.class, 0);
     }
 
     /**
@@ -73,6 +73,6 @@ public class CRUDServiceImpl<D, T extends BaseEntity, M extends BaseMapper<T>>
      */
     @Override
     protected Class<M> currentMapperClass() {
-        return (Class<M>) ReflectionKit.getSuperClassGenericType(this.getClass(), CRUDServiceImpl.class, 2);
+        return (Class<M>) ReflectionKit.getSuperClassGenericType(this.getClass(), CRUDDaoServiceImpl.class, 2);
     }
 }
